@@ -1,6 +1,6 @@
 
 
-Este programa foi desenvolvido para comparar dois arquivos gerados pelo pipeline ([FRTC ](https://github.com/alanlorenzetti/frtc.git)) resultando em outros 2 outros arquivos de intercessão, 'presente nos dois vetores ou não' e anotar os seus genes a partir de um arquivo GFF. Além disso, o programa também realiza a transformação de um arquivo GFF em um formato BED.
+Este programa foi desenvolvido para comparar dois arquivos gerados pela analise de genes diferencialmente expressos, resultando em outros 2 outros arquivos de intercessão, 'presente nos dois vetores ou não' e anotar os seus genes a partir de um arquivo GFF. Além disso, o programa também realiza a transformação de um arquivo GFF em um formato BED.
 
 
 --------------------- REQUISITOS ------------------------------------
