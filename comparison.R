@@ -1,6 +1,6 @@
 #Transformar o arquivo em matrizes
-Matriz1 <- read.delim("/home/mcavalcante/matrizes_resultados/all_genes_frtc_default.tsv", sep = "\t")
-Matriz2 <- read.delim("/home/mcavalcante/matrizes_resultados/all_genes_frtc_splicing.tsv", sep = "\t")
+Matriz1 <- read.delim("endereco/arquivo/all_genes_default.tsv", sep = "\t")
+Matriz2 <- read.delim("endereco/arquivo/all_genes_splicing.tsv", sep = "\t")
 
 coluna1_matriz1 <- Matriz1[, 1]
 coluna1_matriz2 <- Matriz2[, 1]
@@ -42,26 +42,27 @@ resultados_presentes <- data.frame(presentes)
 resultados_nao_presentes <- data.frame(nao_presentes)
 
 #Escreve o dataframe em um arquivo de texto
-write.table(resultados_presentes, file = "/home/mcavalcante/matrizes_resultados/resultados_presente_all.tsv", sep = "\t", row.names = FALSE, col.names = TRUE)
-write.table(resultados_nao_presentes, file = "/home/mcavalcante/matrizes_resultados/resultados_nao_presente_all.tsv", sep = "\t", row.names = FALSE, col.names = TRUE)
+write.table(resultados_presentes, file = "endereco/salvar/arquivo/resultados_presente_all.tsv", sep = "\t", row.names = FALSE, col.names = TRUE)
+write.table(resultados_nao_presentes, file = "endereco/salvar/resultados_nao_presente_all.tsv", sep = "\t", row.names = FALSE, col.names = TRUE)
 
 
+#--------------------- Transformando o arquivo para criar a matriz
 
 # Baixe o arquivo GFF
-d <- "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_genomic.gff.gz"
-download.file(paste0(d), "/home/mcavalcante/matrizes_resultados/Saccharomyces.gff")
+d <- "https://ftp.ncbi.nlm.nih.gov/endereco_genomic.gff.gz"
+download.file(paste0(d), "nome_organismo.gff")
 
-# Transformando em BED ---------------------
+# Transformando em BED 
 library(GenomicRanges)
 
 # Leia o arquivo GFF
-gff <- import.gff("/home/mcavalcante/matrizes_resultados/Saccharomyces.gff")
+gff <- import.gff("/endereco/salvar/nome_organismo.gff")
 
 # Converta para o formato BED
 bed <- as(gff, "GRanges")
 bed <- as(bed, "data.frame")
 
-# ------------
+# ---------------------- Comparando
 
 # Criar uma nova matriz vazia para armazenar os valores correspondentes
 nova_matriz <- data.frame(locus_tag = character(), name = character(), stringsAsFactors = FALSE)
@@ -80,4 +81,4 @@ for (i in 1:nrow(bed)) {
 }
 
 # Escrever a nova matriz em um arquivo
-write.table(nova_matriz, file = "/home/mcavalcante/matrizes_resultados/resultados_presente_all.csv", sep = "\t", row.names = FALSE, col.names = TRUE)
+write.table(nova_matriz, file = "endereco/salvar/resultados_presente_all.csv", sep = "\t", row.names = FALSE, col.names = TRUE)
